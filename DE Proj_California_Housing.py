@@ -1,10 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ## Data Exploration and Visualization
-
-# In[17]:
-
+# Data Exploration and Visualization
 
 import pandas as pd
 import numpy as np
@@ -41,17 +35,11 @@ housing.plot(kind="scatter",
 
 # ## Correlation Analysis
 
-# In[2]:
-
-
 corr_matrix = housing.corr()
 corr_matrix["median_house_value"].sort_values(ascending=False)
 
 
-# ## Data Cleaning and Preprocessing
-
-# In[5]:
-
+# Data Cleaning and Preprocessing
 
 housing_na = housing.dropna(subset=["total_bedrooms"])
 dummies = pd.get_dummies(housing_na.ocean_proximity)
@@ -59,10 +47,7 @@ housing_na_dummies = pd.concat([housing_na, dummies], axis='columns')
 housing_clean = housing_na_dummies.drop(["ocean_proximity", "ISLAND"], axis="columns")
 
 
-# ## Model Training and Evaluation
-
-# In[7]:
-
+# Model Training and Evaluation
 
 X = housing_clean.drop(columns=["median_house_value"])
 y = housing_clean["median_house_value"]
@@ -84,10 +69,7 @@ print("The R-squared value is " + str(OLS.score(X_train, y_train)))
 y_pred = OLS.predict(X_test)
 
 
-# ## Visualization of Model Performance
-
-# In[8]:
-
+# Visualization of Model Performance
 
 performance = pd.DataFrame({'PREDICTIONS': y_pred, 'ACTUAL VALUES': y_test})
 performance["error"] = performance['ACTUAL VALUES'] - performance['PREDICTIONS']
@@ -101,10 +83,7 @@ plt.ylabel("Residuals")
 plt.show()
 
 
-# ## Advanced Model Summary
-
-# In[9]:
-
+# Advanced Model Summary
 
 import statsmodels.api as sm
 X_train = sm.add_constant(X_train)
