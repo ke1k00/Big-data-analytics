@@ -33,7 +33,7 @@ housing.plot(kind="scatter",
              cmap=plt.get_cmap("jet"))
 
 
-# ## Correlation Analysis
+# Correlation Analysis
 
 corr_matrix = housing.corr()
 corr_matrix["median_house_value"].sort_values(ascending=False)
